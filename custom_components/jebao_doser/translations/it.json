@@ -1,0 +1,70 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Pompa dosatrice Jebao",
+        "description": "Connessione locale sulla porta TCP 12416. La pompa fornisce da sola il codice: basta l'indirizzo IP.",
+        "data": {
+          "host": "Indirizzo IP"
+        }
+      },
+      "details": {
+        "title": "Pompa trovata",
+        "description": "Modello: {model}",
+        "data": {
+          "name": "Nome",
+          "heads": "Numero di teste"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Impossibile collegarsi alla pompa",
+      "no_schema": "Impossibile scaricare lo schema dei parametri di questo modello"
+    },
+    "abort": {
+      "already_configured": "Questa pompa è già configurata"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "heads": "Numero di teste"
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "connection": {
+        "name": "Connessione locale"
+      },
+      "power": {
+        "name": "Accensione"
+      },
+      "open_circuit": {
+        "name": "Circuito aperto"
+      },
+      "module_fault": {
+        "name": "Guasto modulo Wi-Fi"
+      },
+      "dosing": {
+        "name": "Testa {head} in dosaggio"
+      }
+    },
+    "sensor": {
+      "schedule": {
+        "name": "Testa {head} programma"
+      },
+      "amount": {
+        "name": "Testa {head} quantità al giorno"
+      },
+      "interval": {
+        "name": "Testa {head} intervallo"
+      },
+      "last_dose": {
+        "name": "Testa {head} ultimo dosaggio"
+      }
+    }
+  }
+}

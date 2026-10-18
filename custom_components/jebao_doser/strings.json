@@ -1,0 +1,70 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Jebao Doser",
+        "description": "Local connection on TCP port 12416. The pump gives out its own passcode: only the IP address is needed.",
+        "data": {
+          "host": "IP address"
+        }
+      },
+      "details": {
+        "title": "Pump found",
+        "description": "Model: {model}",
+        "data": {
+          "name": "Name",
+          "heads": "Number of heads"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect to the pump",
+      "no_schema": "Could not download the data point schema for this model"
+    },
+    "abort": {
+      "already_configured": "This pump is already configured"
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "heads": "Number of heads"
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "connection": {
+        "name": "Local connection"
+      },
+      "power": {
+        "name": "Power"
+      },
+      "open_circuit": {
+        "name": "Open circuit"
+      },
+      "module_fault": {
+        "name": "Wi-Fi module fault"
+      },
+      "dosing": {
+        "name": "Head {head} dosing"
+      }
+    },
+    "sensor": {
+      "schedule": {
+        "name": "Head {head} schedule"
+      },
+      "amount": {
+        "name": "Head {head} amount per day"
+      },
+      "interval": {
+        "name": "Head {head} interval"
+      },
+      "last_dose": {
+        "name": "Head {head} last dose"
+      }
+    }
+  }
+}
