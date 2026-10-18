@@ -1,6 +1,10 @@
 # Jebao Doser for Home Assistant — local, no cloud (HACS)
 
-[![hacs](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz/docs/faq/custom_repositories)
+[![HACS](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz/docs/faq/custom_repositories)
+[![Release](https://img.shields.io/github/v/release/m0s4ik/ha-jebao-doser)](https://github.com/m0s4ik/ha-jebao-doser/releases)
+[![Validate](https://github.com/m0s4ik/ha-jebao-doser/actions/workflows/validate.yml/badge.svg)](https://github.com/m0s4ik/ha-jebao-doser/actions/workflows/validate.yml)
+[![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2025.2%2B-41BDF5?logo=homeassistant)](https://www.home-assistant.io/)
+[![License: MIT](https://img.shields.io/github/license/m0s4ik/ha-jebao-doser)](LICENSE)
 
 Home Assistant custom integration for **Jebao WiFi aquarium dosing pumps**: Jebao **DOSER 3.4** (tested) and other Gizwits based Jebao dosers (**DOSER 3.1**, **DOSER 3.2**, **MD 4.4**). It talks to the pump over the **local network** (local push), with no Jebao/Gizwits cloud and no account.
 
