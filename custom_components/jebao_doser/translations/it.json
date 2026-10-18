@@ -29,7 +29,11 @@
     "step": {
       "init": {
         "data": {
-          "heads": "Numero di teste"
+          "heads": "Numero di teste",
+          "ml_per_minute": "Portata per testa (ml/min)"
+        },
+        "data_description": {
+          "ml_per_minute": "Serve a trasformare i ml in secondi per le dosi manuali. Circa 50 sulla DOSER 3.4: misurala per essere precisi."
         }
       }
     }
@@ -64,6 +68,40 @@
       },
       "last_dose": {
         "name": "Testa {head} ultimo dosaggio"
+      }
+    },
+    "button": {
+      "dose": {
+        "name": "Testa {head} dosa"
+      }
+    },
+    "number": {
+      "manual_dose": {
+        "name": "Testa {head} dose manuale"
+      }
+    }
+  },
+  "services": {
+    "dose": {
+      "name": "Dosa",
+      "description": "Fa girare una testa della pompa per una quantità (ml) o un tempo (secondi).",
+      "fields": {
+        "config_entry_id": {
+          "name": "Pompa",
+          "description": "La pompa Jebao"
+        },
+        "head": {
+          "name": "Testa",
+          "description": "Numero della testa (1-8)"
+        },
+        "ml": {
+          "name": "ml",
+          "description": "Quantità, trasformata in tempo con la portata impostata"
+        },
+        "seconds": {
+          "name": "Secondi",
+          "description": "Durata, al posto dei ml"
+        }
       }
     }
   }

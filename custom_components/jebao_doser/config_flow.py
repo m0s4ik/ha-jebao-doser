@@ -11,7 +11,7 @@ from homeassistant.config_entries import ConfigEntry, ConfigFlow, ConfigFlowResu
 from homeassistant.const import CONF_HOST
 from homeassistant.core import callback
 
-from .const import CONF_HEADS, DEFAULT_HEADS, DOMAIN, MAX_HEADS
+from .const import CONF_HEADS, CONF_ML_PER_MINUTE, DEFAULT_HEADS, DEFAULT_ML_PER_MINUTE, DOMAIN, MAX_HEADS
 from .coordinator import schema_cache
 from .lib import Doser, ProtocolError, SchemaError
 
@@ -74,5 +74,15 @@ class DoserOptionsFlow(OptionsFlow):
     async def async_step_init(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult:
         if user_input is not None:
             return self.async_create_entry(data=user_input)
-        current = self.config_entry.options.get(CONF_HEADS, self.config_entry.data.get(CONF_HEADS, DEFAULT_HEADS))
-        return self.async_show_form(step_id="init", data_schema=vol.Schema({vol.Required(CONF_HEADS, default=current): HEADS}))
+        o, d = self.config_entry.options, self.config_entry.data
+        return self.async_show_form(
+            step_id="init",
+            data_schema=vol.Schema(
+                {
+                    vol.Required(CONF_HEADS, default=o.get(CONF_HEADS, d.get(CONF_HEADS, DEFAULT_HEADS))): HEADS,
+                    vol.Required(CONF_ML_PER_MINUTE, default=o.get(CONF_ML_PER_MINUTE, DEFAULT_ML_PER_MINUTE)): vol.All(
+                        vol.Coerce(float), vol.Range(min=1, max=500)
+                    ),
+                }
+            ),
+        )

@@ -45,10 +45,26 @@ Per head (`N` = 1…4):
 | `sensor` Head N amount per day | ml per dosing day |
 | `sensor` Head N interval | days between dosing days |
 | `sensor` Head N last dose | timestamp of the last dose, attribute `duration` (s); kept across restarts |
+| `button` Head N dose | runs the head for its manual dose |
+| `number` Head N manual dose | amount of the manual dose (ml), remembered |
 
 Pump: local connection, power, open circuit alarm, Wi-Fi module fault. Translations: English, Italian.
 
-Doses are pushed by the pump the moment they happen, whether scheduled, started from the app or from the buttons on the pump.
+Manual doses (from Home Assistant, the app or the buttons on the pump) are pushed by the pump the moment they happen. **Scheduled doses are not reported by the pump** (they run, but it does not say so): to be sure a dose ran, let Home Assistant start it (see below) or watch the power draw of the pump's plug.
+
+## Dosing from Home Assistant
+
+Press **Head N dose**, or use the action in automations:
+
+```yaml
+action: jebao_doser.dose
+data:
+  config_entry_id: <your pump>   # pick it in the UI editor
+  head: 2
+  ml: 4          # or: seconds: 5
+```
+
+The amount is turned into a run time with the flow set in the integration options (default 50 ml/min per head, the DOSER 3.4 spec: measure yours for accuracy). Home Assistant waits for the pump to confirm the head started (up to 3 s), otherwise it stops it and raises an error; the stop is always sent. Up to 120 s per dose. Writes change only the head being dosed, like the vendor app: schedules are not touched.
 
 ## Install
 
@@ -62,7 +78,7 @@ Then *Settings → Devices & services → Add integration → **Jebao Doser (loc
 
 ## Notes
 
-- Read only for now: a write sends every writable byte at once and a mistake wipes the schedules, so manual dosing and schedule editing are not exposed yet.
+- Editing the pump's own schedules is not exposed yet.
 - The vendor app keeps working: the pump stays connected to its cloud.
 - Security: anyone who can reach the pump on TCP 12416 can control it. Keep it on an isolated IoT network and allow that port only from Home Assistant.
 

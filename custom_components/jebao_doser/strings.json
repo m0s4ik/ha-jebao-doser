@@ -29,7 +29,11 @@
     "step": {
       "init": {
         "data": {
-          "heads": "Number of heads"
+          "heads": "Number of heads",
+          "ml_per_minute": "Flow per head (ml/min)"
+        },
+        "data_description": {
+          "ml_per_minute": "Used to turn ml into seconds for manual doses. About 50 on a DOSER 3.4: measure it for accuracy."
         }
       }
     }
@@ -64,6 +68,40 @@
       },
       "last_dose": {
         "name": "Head {head} last dose"
+      }
+    },
+    "button": {
+      "dose": {
+        "name": "Head {head} dose"
+      }
+    },
+    "number": {
+      "manual_dose": {
+        "name": "Head {head} manual dose"
+      }
+    }
+  },
+  "services": {
+    "dose": {
+      "name": "Dose",
+      "description": "Run one head of the pump for an amount (ml) or a time (seconds).",
+      "fields": {
+        "config_entry_id": {
+          "name": "Pump",
+          "description": "The Jebao doser"
+        },
+        "head": {
+          "name": "Head",
+          "description": "Head number (1-8)"
+        },
+        "ml": {
+          "name": "ml",
+          "description": "Amount, turned into time with the configured flow"
+        },
+        "seconds": {
+          "name": "Seconds",
+          "description": "Run time, instead of ml"
+        }
       }
     }
   }

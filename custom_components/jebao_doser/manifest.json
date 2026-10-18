@@ -10,7 +10,7 @@
   "iot_class": "local_push",
   "issue_tracker": "https://github.com/m0s4ik/ha-jebao-doser/issues",
   "requirements": [
-    "jebao-doser==0.1.1"
+    "jebao-doser==0.2.0"
   ],
-  "version": "0.1.2"
+  "version": "0.2.0"
 }
