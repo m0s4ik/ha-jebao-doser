@@ -1,12 +1,16 @@
 {
   "domain": "jebao_doser",
   "name": "Jebao Doser (local)",
-  "codeowners": ["@m0s4ik"],
+  "codeowners": [
+    "@m0s4ik"
+  ],
   "config_flow": true,
   "documentation": "https://github.com/m0s4ik/ha-jebao-doser",
   "integration_type": "device",
   "iot_class": "local_push",
   "issue_tracker": "https://github.com/m0s4ik/ha-jebao-doser/issues",
-  "requirements": [],
-  "version": "0.1.0"
+  "requirements": [
+    "jebao-doser==0.1.1"
+  ],
+  "version": "0.1.1"
 }

@@ -52,7 +52,7 @@ Doses are pushed by the pump the moment they happen, whether scheduled, started 
 
 ## Install
 
-The [jebao-doser](https://github.com/m0s4ik/jebao-doser) library is bundled in `custom_components/jebao_doser/vendor/` until it is published on PyPI: nothing else to install.
+Home Assistant installs the [jebao-doser](https://pypi.org/project/jebao-doser/) library from PyPI by itself: nothing else to install.
 
 **HACS**: *HACS → ⋮ → Custom repositories* → `https://github.com/m0s4ik/ha-jebao-doser`, category *Integration* → install → restart Home Assistant.
 
