@@ -66,4 +66,4 @@ Then *Settings → Devices & services → Add integration → **Jebao Doser (loc
 - The vendor app keeps working: the pump stays connected to its cloud.
 - Security: anyone who can reach the pump on TCP 12416 can control it. Keep it on an isolated IoT network and allow that port only from Home Assistant.
 
-Not affiliated with Jebao or Gizwits. MIT license.
+The integration icon is the icon of the official Jebao Aqua app, used to identify the brand. Not affiliated with Jebao or Gizwits. MIT license.
