@@ -6,11 +6,33 @@
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2025.2%2B-41BDF5?logo=homeassistant)](https://www.home-assistant.io/)
 [![License: MIT](https://img.shields.io/github/license/m0s4ik/ha-jebao-doser)](LICENSE)
 
+<p align="center"><img src="images/jebao-doser-3.4.jpg" alt="Jebao DOSER 3.4 WiFi 4-head aquarium dosing pump" width="560"><br><sub>Jebao DOSER 3.4 WiFi (product image © Jebao)</sub></p>
+
 Home Assistant custom integration for **Jebao WiFi aquarium dosing pumps**: Jebao **DOSER 3.4** (tested) and other Gizwits based Jebao dosers (**DOSER 3.1**, **DOSER 3.2**, **MD 4.4**). It talks to the pump over the **local network** (local push), with no Jebao/Gizwits cloud and no account.
 
 See in Home Assistant when each head doses, the dosing schedule (times, ml per day, interval in days), the last dose of every head and the pump alarms, and use them in automations: for example a notification if a scheduled dose did not run, or if the pump goes offline.
 
 Built on the **[jebao-doser](https://github.com/m0s4ik/jebao-doser)** Python library (also usable on its own, from the command line).
+
+## Supported pumps
+
+| Model | Heads | Status |
+|---|---|---|
+| Jebao **DOSER 3.4** WiFi | 4 | ✅ tested (firmware 04X3000R) |
+| Jebao **DOSER 3.1** / **DOSER 3.2** WiFi | 1 / 2 | should work (same Gizwits platform): reports welcome |
+| Jebao **MD 4.4** | 4 | should work (same Gizwits platform): reports welcome |
+
+Jebao DOSER 3.4 WiFi at a glance:
+
+| | |
+|---|---|
+| Heads | 4 peristaltic heads |
+| Flow | 50 ml/min per head |
+| Power | 12 V, 9 W |
+| Size | 226 × 84 × 61 mm |
+| Tubing | 1.5 m |
+| Connectivity | Wi-Fi 2.4 GHz + Bluetooth (ESP32-C3 module, Gizwits platform) |
+| Local protocol | TCP 12416, UDP 12414 (discovery) |
 
 ## Entities
 
