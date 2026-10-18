@@ -28,6 +28,13 @@ DOSE_SCHEMA = vol.Schema(
     }
 )
 
+CLEAR_SCHEMA = vol.Schema(
+    {
+        vol.Required("config_entry_id"): cv.string,
+        vol.Required("head"): vol.All(vol.Coerce(int), vol.Range(min=1, max=8)),
+    }
+)
+
 
 async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
     async def dose(call: ServiceCall) -> None:
@@ -38,7 +45,14 @@ async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
             raise ServiceValidationError("Give either ml or seconds")
         await entry.runtime_data.async_dose(call.data["head"], call.data.get("ml"), call.data.get("seconds"))
 
+    async def clear_schedule(call: ServiceCall) -> None:
+        entry = hass.config_entries.async_get_entry(call.data["config_entry_id"])
+        if entry is None or entry.domain != DOMAIN or not hasattr(entry, "runtime_data"):
+            raise ServiceValidationError("Unknown or not loaded Jebao doser")
+        await entry.runtime_data.async_clear_schedule(call.data["head"])
+
     hass.services.async_register(DOMAIN, "dose", dose, schema=DOSE_SCHEMA)
+    hass.services.async_register(DOMAIN, "clear_schedule", clear_schedule, schema=CLEAR_SCHEMA)
     return True
 
 

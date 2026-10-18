@@ -41,7 +41,7 @@ Per head (`N` = 1…4):
 | Entity | |
 |---|---|
 | `binary_sensor` Head N dosing | the head is running right now |
-| `sensor` Head N schedule | dose times; attribute `doses` = list of `{time, amount}` |
+| `sensor` Head N schedule | the pump's own schedule: dose times; attributes `doses` (list of `{time, amount}`), `interval_days`, `enabled` |
 | `sensor` Head N amount per day | ml per dosing day |
 | `sensor` Head N interval | days between dosing days |
 | `sensor` Head N last dose | timestamp of the last dose, attribute `duration` (s); kept across restarts |
@@ -80,7 +80,7 @@ Then *Settings → Devices & services → Add integration → **Jebao Doser (loc
 
 This is a behaviour of the **pump firmware**, not of this integration. Doses that run from the pump's **own schedule** (set in the Jebao app) are **not reported** by the pump at all: nothing on the local connection and nothing to the cloud (verified with packet captures, Jebao DOSER 3.4, firmware 04X3000R). So `Head N dosing` and `Head N last dose` only see doses started from Home Assistant, the app or the buttons on the pump.
 
-If you want to be sure every dose runs, **schedule the doses in Home Assistant** with the `jebao_doser.dose` action instead of the pump's schedule: the pump confirms each dose, and you can be notified if it does not. Clear the pump's own schedule in the app to avoid double dosing (or keep it and accept that it is invisible).
+If you want to be sure every dose runs, **schedule the doses in Home Assistant** with the `jebao_doser.dose` action instead of the pump's schedule: the pump confirms each dose, and you can be notified if it does not. Clear the pump's own schedule to avoid double dosing, with the **`jebao_doser.clear_schedule`** action (head number) or in the Jebao app.
 
 ```yaml
 automation:
@@ -107,7 +107,7 @@ automation:
 
 ## Notes
 
-- Editing the pump's own schedules is not exposed yet.
+- `jebao_doser.clear_schedule` deletes the pump's own schedule of a head and switches it off (the clock icon in the Jebao app). Editing the pump's schedules is not exposed yet.
 - The vendor app keeps working: the pump stays connected to its cloud.
 - Security: anyone who can reach the pump on TCP 12416 can control it. Keep it on an isolated IoT network and allow that port only from Home Assistant.
 

@@ -28,3 +28,17 @@ dose:
           step: 0.1
           unit_of_measurement: s
           mode: box
+clear_schedule:
+  fields:
+    config_entry_id:
+      required: true
+      selector:
+        config_entry:
+          integration: jebao_doser
+    head:
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 8
+          mode: box

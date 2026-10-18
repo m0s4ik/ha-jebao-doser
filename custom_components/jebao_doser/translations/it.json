@@ -103,6 +103,20 @@
           "description": "Durata, al posto dei ml"
         }
       }
+    },
+    "clear_schedule": {
+      "name": "Azzera programma della pompa",
+      "description": "Cancella tutti i dosaggi programmati di una testa nella pompa e spegne il suo programma, come nell'app Jebao. Utile quando i dosaggi li programma Home Assistant.",
+      "fields": {
+        "config_entry_id": {
+          "name": "Pompa",
+          "description": "La pompa Jebao"
+        },
+        "head": {
+          "name": "Testa",
+          "description": "Numero della testa (1-8)"
+        }
+      }
     }
   }
 }

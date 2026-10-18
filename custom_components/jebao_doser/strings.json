@@ -103,6 +103,20 @@
           "description": "Run time, instead of ml"
         }
       }
+    },
+    "clear_schedule": {
+      "name": "Clear pump schedule",
+      "description": "Delete every programmed dose of one head in the pump and switch its schedule off, as deleting it in the Jebao app. Useful when doses are scheduled from Home Assistant.",
+      "fields": {
+        "config_entry_id": {
+          "name": "Pump",
+          "description": "The Jebao doser"
+        },
+        "head": {
+          "name": "Head",
+          "description": "Head number (1-8)"
+        }
+      }
     }
   }
 }

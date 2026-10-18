@@ -13,7 +13,7 @@ from homeassistant.util import dt as dt_util
 
 from . import DoserConfigEntry
 from .entity import DoserEntity
-from .lib import interval, schedule
+from .lib import interval, schedule, schedule_enabled
 
 
 async def async_setup_entry(
@@ -40,7 +40,8 @@ class ScheduleSensor(DoserEntity, SensorEntity):
     @property
     def extra_state_attributes(self) -> dict[str, Any]:
         data = self.coordinator.data or {}
-        return {"doses": schedule(data, self.head), "interval_days": interval(data, self.head)}
+        return {"doses": schedule(data, self.head), "interval_days": interval(data, self.head),
+                "enabled": schedule_enabled(data, self.head)}
 
 
 class AmountSensor(DoserEntity, SensorEntity):

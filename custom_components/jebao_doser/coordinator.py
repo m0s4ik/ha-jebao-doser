@@ -91,3 +91,12 @@ class DoserCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             except (OSError, ConnectionError) as err:
                 _LOGGER.error("Could not stop head %s: %s", head, err)
             self._dosing.discard(head)
+
+    async def async_clear_schedule(self, head: int) -> None:
+        """Delete the pump's own schedule of a head and switch it off (as in the vendor app)."""
+        if not 1 <= head <= self.heads:
+            raise HomeAssistantError(f"Head {head} does not exist")
+        try:
+            await self.doser.clear_schedule(head)
+        except (OSError, ConnectionError) as err:
+            raise HomeAssistantError(f"Pump not reachable: {err}") from err
