@@ -76,6 +76,35 @@ Home Assistant installs the [jebao-doser](https://pypi.org/project/jebao-doser/)
 
 Then *Settings → Devices & services → Add integration → **Jebao Doser (local)*** and enter the pump's IP address. Model and number of heads are read from the pump. Give the pump a fixed IP (DHCP reservation).
 
+## ⚠️ Known limitation of the pump: scheduled doses are not reported
+
+This is a behaviour of the **pump firmware**, not of this integration. Doses that run from the pump's **own schedule** (set in the Jebao app) are **not reported** by the pump at all: nothing on the local connection and nothing to the cloud (verified with packet captures, Jebao DOSER 3.4, firmware 04X3000R). So `Head N dosing` and `Head N last dose` only see doses started from Home Assistant, the app or the buttons on the pump.
+
+If you want to be sure every dose runs, **schedule the doses in Home Assistant** with the `jebao_doser.dose` action instead of the pump's schedule: the pump confirms each dose, and you can be notified if it does not. Clear the pump's own schedule in the app to avoid double dosing (or keep it and accept that it is invisible).
+
+```yaml
+automation:
+  - alias: "Doser: head 2, 4 ml every 2 days at 17:30"
+    triggers:
+      - trigger: time
+        at: "17:30:00"
+    conditions:
+      - condition: template   # every other day
+        value_template: "{{ (now().date() - as_datetime('2026-01-01').date()).days % 2 == 0 }}"
+    actions:
+      - action: jebao_doser.dose
+        continue_on_error: true
+        data:
+          config_entry_id: <your pump>
+          head: 2
+          ml: 4
+      - if: "{{ not is_state('sensor.jebao_doser_head_2_last_dose', 'unknown') and (now() - states('sensor.jebao_doser_head_2_last_dose') | as_datetime).total_seconds() > 120 }}"
+        then:
+          - action: notify.notify
+            data:
+              message: "Doser: head 2 did not dose at 17:30"
+```
+
 ## Notes
 
 - Editing the pump's own schedules is not exposed yet.
