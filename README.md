@@ -5,6 +5,7 @@
 [![Validate](https://github.com/m0s4ik/ha-jebao-doser/actions/workflows/validate.yml/badge.svg)](https://github.com/m0s4ik/ha-jebao-doser/actions/workflows/validate.yml)
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2025.2%2B-41BDF5?logo=homeassistant)](https://www.home-assistant.io/)
 [![License: MIT](https://img.shields.io/github/license/m0s4ik/ha-jebao-doser)](LICENSE)
+[![Buy me a coffee](https://img.shields.io/badge/Buy%20me%20a%20coffee-m0s4ik-FFDD00?logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/m0s4ik)
 
 <p align="center"><img src="images/jebao-doser-3.4.jpg" alt="Jebao DOSER 3.4 WiFi 4-head aquarium dosing pump" width="560"><br><sub>Jebao DOSER 3.4 WiFi (product image © Jebao)</sub></p>
 
@@ -112,3 +113,9 @@ automation:
 - Security: anyone who can reach the pump on TCP 12416 can control it. Keep it on an isolated IoT network and allow that port only from Home Assistant.
 
 The integration icon is the icon of the official Jebao Aqua app, used to identify the brand. Not affiliated with Jebao or Gizwits. MIT license.
+
+## Support
+
+If this integration saved you some time, you can [buy me a coffee ☕](https://buymeacoffee.com/m0s4ik): it keeps the next one coming.
+
+<a href="https://buymeacoffee.com/m0s4ik"><img src="https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=%E2%98%95&slug=m0s4ik&button_colour=FFDD00&font_colour=000000&font_family=Inter&outline_colour=000000&coffee_colour=ffffff" height="40" alt="Buy me a coffee"></a>
