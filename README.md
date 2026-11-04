@@ -65,7 +65,7 @@ data:
   ml: 4          # or: seconds: 5
 ```
 
-The amount is turned into a run time with the flow set in the integration options (default 50 ml/min per head, the DOSER 3.4 spec: measure yours for accuracy). Home Assistant waits for the pump to confirm the head started (up to 3 s), otherwise it stops it and raises an error; the stop is always sent. Up to 120 s per dose. Writes change only the head being dosed, like the vendor app: schedules are not touched.
+The amount is turned into a run time with the flow set in the integration options (default 50 ml/min per head, the DOSER 3.4 spec: measure yours for accuracy). Home Assistant waits for the pump to confirm the head started (up to 3 s), otherwise it stops it and raises an error. The stop is always sent, retried up to 4 times and waited for until the pump reports the head off: if it cannot be confirmed the action fails with an error (the pump may still be running), so an automation does not carry on as if the dose went fine. Up to 120 s per dose. Writes change only the head being dosed, like the vendor app: schedules are not touched.
 
 ## Install
 
